@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simulatech/pages/ausculta_abdominal.dart';
 
 import '../pages/ausculta_cardiaca.dart';
 import '../pages/ausculta_pulmonar.dart';
@@ -17,7 +18,7 @@ class PaginaInicial extends StatelessWidget {
           children: [
             // Logo da aplicação
             Image.asset(
-              'assets/images/logo.png',
+              'assets/app/logo.png',
               width: 250,
               height: 250,
             ),
@@ -50,7 +51,8 @@ class PaginaInicial extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Image.asset('assets/images/pulmao.png'),
+                            child:
+                                Image.asset('assets/ausc-pulmonar/pulmao.png'),
                           ),
                           const SizedBox(height: 5),
                           const Text(
@@ -85,7 +87,8 @@ class PaginaInicial extends StatelessWidget {
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: Image.asset('assets/images/coracao.png'),
+                            child:
+                                Image.asset('assets/ausc-cardiaca/coracao.png'),
                           ),
                           const SizedBox(height: 5),
                           const Text(
@@ -129,7 +132,7 @@ class PaginaInicial extends StatelessWidget {
                             child: Stack(
                               children: [
                                 Image.asset(
-                                  'assets/images/pulmao.png',
+                                  'assets/ausc-pulmonar/pulmao.png',
                                   width: 60,
                                   height: 60,
                                 ),
@@ -137,7 +140,7 @@ class PaginaInicial extends StatelessWidget {
                                   bottom: 1,
                                   right: -5,
                                   child: Image.asset(
-                                    'assets/images/coracao.png',
+                                    'assets/ausc-cardiaca/coracao.png',
                                     width: 60,
                                     height: 60,
                                   ),
@@ -164,7 +167,7 @@ class PaginaInicial extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const AuscultaSimultanea(),
+                            builder: (context) => const AuscultaAbdominal(),
                           ),
                         );
                       },
@@ -179,7 +182,7 @@ class PaginaInicial extends StatelessWidget {
                               borderRadius: BorderRadius.circular(20),
                             ),
                             child: Image.asset(
-                              'assets/images/cuidados-de-saude.png',
+                              'assets/ausc-abdominal/abdomen.png',
                               width: 60,
                               height: 60,
                             ),

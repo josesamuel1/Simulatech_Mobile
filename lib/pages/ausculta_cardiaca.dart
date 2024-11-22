@@ -29,7 +29,7 @@ class _AuscultaCardiacaState extends State<AuscultaCardiaca> {
   @override
   void initState() {
     super.initState();
-    // Instancia jogadores de áudio
+    // Inicializa as instâncias de AudioPlayer
     player1 = AudioPlayer();
     player2 = AudioPlayer();
     player3 = AudioPlayer();
@@ -50,11 +50,11 @@ class _AuscultaCardiacaState extends State<AuscultaCardiaca> {
   // Função para inicializar a reprodução de áudio
   Future<void> _initAudio() async {
     // Define as fontes de áudio para cada player, usando arquivos de áudio armazenados localmente
-    await player1.setSourceAsset('audios/AtritoPericardico.m4a');
-    await player2.setSourceAsset('audios/EstenoseAortica.m4a');
-    await player3.setSourceAsset('audios/MurmurioDiastolico.mp3');
-    await player4.setSourceAsset('audios/MurmurioSistolico.mp3');
-    await player5.setSourceAsset('audios/ProlapsoValvulaMitral.m4a');
+    await player1.setSourceAsset('ausc-cardiaca/AtritoPericardico.m4a');
+    await player2.setSourceAsset('ausc-cardiaca/EstenoseAortica.m4a');
+    await player3.setSourceAsset('ausc-cardiaca/MurmurioDiastolico.mp3');
+    await player4.setSourceAsset('ausc-cardiaca/MurmurioSistolico.mp3');
+    await player5.setSourceAsset('ausc-cardiaca/ProlapsoValvulaMitral.m4a');
   }
 
   // Função chamada ao destruir o widget, garantindo a liberação de recursos dos players
@@ -99,7 +99,7 @@ class _AuscultaCardiacaState extends State<AuscultaCardiaca> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/logo.png',
+                      'assets/app/logo.png',
                       height: 250,
                       width: 250,
                     ),
@@ -113,7 +113,7 @@ class _AuscultaCardiacaState extends State<AuscultaCardiaca> {
                         title: 'Atrito Pericárdico',
                         // Descrição do áudio
                         description: 'Info Atrito Pericárdico',
-                        image: 'assets/images/logo.jpeg',
+                        image: 'assets/app/logo.jpeg',
                       ),
                     ),
                     SizedBox(
@@ -122,7 +122,7 @@ class _AuscultaCardiacaState extends State<AuscultaCardiaca> {
                         player: player2,
                         title: 'Estenose Aórtica',
                         description: 'Info Estenose Aórtica',
-                        image: 'assets/images/logo.jpeg',
+                        image: 'assets/app/logo.jpeg',
                       ),
                     ),
                     SizedBox(
@@ -131,7 +131,7 @@ class _AuscultaCardiacaState extends State<AuscultaCardiaca> {
                         player: player3,
                         title: 'Murm. Diastólico',
                         description: 'Info Murmúrio Diastólico',
-                        image: 'assets/images/logo.jpeg',
+                        image: 'assets/app/logo.jpeg',
                       ),
                     ),
                     SizedBox(
@@ -140,7 +140,7 @@ class _AuscultaCardiacaState extends State<AuscultaCardiaca> {
                         player: player4,
                         title: 'Murm. Sistólico',
                         description: 'Info Murmúrio Sistólico',
-                        image: 'assets/images/logo.jpeg',
+                        image: 'assets/app/logo.jpeg',
                       ),
                     ),
                     SizedBox(
@@ -149,7 +149,7 @@ class _AuscultaCardiacaState extends State<AuscultaCardiaca> {
                         player: player5,
                         title: 'Prolapso V. Mitral',
                         description: 'Info Prolapso Válvula Mitral',
-                        image: 'assets/images/logo.jpeg',
+                        image: 'assets/app/logo.jpeg',
                       ),
                     ),
                   ],

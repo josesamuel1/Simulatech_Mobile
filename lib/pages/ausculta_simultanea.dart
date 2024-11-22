@@ -72,19 +72,19 @@ class _AuscultaSimultaneaState extends State<AuscultaSimultanea> {
   // Função para inicializar a reprodução de áudio carregando os arquivos dos assets
   Future<void> _initAudio() async {
     // Áudios da Ausculta Pulmonar
-    await player1.setSourceAsset('audios/CrepitoForte.m4a');
-    await player2.setSourceAsset('audios/CrepitoFraco.mp3');
-    await player3.setSourceAsset('audios/Estridor.mp3');
-    await player4.setSourceAsset('audios/Normalbc.mp3');
-    await player5.setSourceAsset('audios/Pneumonia.m4a');
-    await player6.setSourceAsset('audios/Ronco.mp3');
-    await player7.setSourceAsset('audios/Sibilos.mp3');
+    await player1.setSourceAsset('ausc-pulmonar/CrepitoForte.m4a');
+    await player2.setSourceAsset('ausc-pulmonar/CrepitoFraco.mp3');
+    await player3.setSourceAsset('ausc-pulmonar/Estridor.mp3');
+    await player4.setSourceAsset('ausc-pulmonar/Normalbc.mp3');
+    await player5.setSourceAsset('ausc-pulmonar/Pneumonia.m4a');
+    await player6.setSourceAsset('ausc-pulmonar/Ronco.mp3');
+    await player7.setSourceAsset('ausc-pulmonar/Sibilos.mp3');
     // Áudios da Ausculta Cardíaca
-    await player8.setSourceAsset('audios/AtritoPericardico.m4a');
-    await player9.setSourceAsset('audios/EstenoseAortica.m4a');
-    await player10.setSourceAsset('audios/MurmurioDiastolico.mp3');
-    await player11.setSourceAsset('audios/MurmurioSistolico.mp3');
-    await player12.setSourceAsset('audios/ProlapsoValvulaMitral.m4a');
+    await player8.setSourceAsset('ausc-cardiaca/AtritoPericardico.m4a');
+    await player9.setSourceAsset('ausc-cardiaca/EstenoseAortica.m4a');
+    await player10.setSourceAsset('ausc-cardiaca/MurmurioDiastolico.mp3');
+    await player11.setSourceAsset('ausc-cardiaca/MurmurioSistolico.mp3');
+    await player12.setSourceAsset('ausc-cardiaca/ProlapsoValvulaMitral.m4a');
   }
 
   // Método para liberar recursos quando o widget é removido
@@ -131,7 +131,7 @@ class _AuscultaSimultaneaState extends State<AuscultaSimultanea> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/images/logo.png',
+                      'assets/app/logo.png',
                       height: 250,
                       width: 250,
                     ),
@@ -160,43 +160,43 @@ class _AuscultaSimultaneaState extends State<AuscultaSimultanea> {
                             player: player1,
                             title: 'Crepito Forte',
                             description: 'Info CrepitoForte',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player2,
                             title: 'Crepito Fraco',
                             description: 'Info Crepito Fraco',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player3,
                             title: 'Estridor',
                             description: 'Info Estridor',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player4,
                             title: 'Normal BC',
                             description: 'Info Normal BC',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player5,
                             title: 'Pneumonia',
                             description: 'Info Pneumonia',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player6,
                             title: 'Ronco',
                             description: 'Info Ronco',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player7,
                             title: 'Sibilos',
                             description: 'Info Sibilos',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                         ],
                       ),
@@ -226,31 +226,31 @@ class _AuscultaSimultaneaState extends State<AuscultaSimultanea> {
                             player: player8,
                             title: 'Atrito Pericárdico',
                             description: 'Info Atrito Pericárdico',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player9,
                             title: 'Estenose Aórtica',
                             description: 'Info Estenose Aórtica',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player10,
                             title: 'Murm. Diastólico',
                             description: 'Info Murmúrio Diastólico',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player11,
                             title: 'Murm. Sistólico',
                             description: 'Info Murmúrio Sistólico',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                           AudioContainer(
                             player: player12,
                             title: 'Prolapso V. Mitral',
                             description: 'Info Prolapso Válvula Mitral',
-                            image: 'assets/images/logo.jpeg',
+                            image: 'assets/app/logo.jpeg',
                           ),
                         ],
                       ),
