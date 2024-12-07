@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:simulatech/pages/pagina_inicial.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'cubits/theme/theme_cubit.dart';
+import 'pages/pagina_inicial.dart';
 
 void main() async {
   // Garantindo a inicialização dos widgets antes de rodar o app
@@ -14,24 +17,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Tela Inicial',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: const Color.fromRGBO(23, 118, 88, 1),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ElevatedButton.styleFrom(
-            backgroundColor: Colors.white,
-            foregroundColor: const Color.fromRGBO(23, 118, 88, 1),
-            textStyle: const TextStyle(fontSize: 16),
-          ),
-        ),
+    return BlocProvider<ThemeCubit>(
+      create: (context) => ThemeCubit(),
+      child: BlocBuilder<ThemeCubit, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Tela Inicial',
+            debugShowCheckedModeBanner: false,
+            theme: state.themeData,
+            home: const HomeScreen(),
+            routes: {
+              '/pagina_inicial': (context) => const PaginaInicial(),
+            },
+          );
+        },
       ),
-      // Define a HomeScreen como a tela inicial
-      home: const HomeScreen(),
-      routes: {
-        '/pagina_inicial': (context) => const PaginaInicial(),
-      },
     );
   }
 }
@@ -43,51 +43,75 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Scaffold para a estrutura da tela
-    return Scaffold(
-      // Container para definir a cor de fundo da tela
-      body: Center(
-        child: Container(
-          color: const Color.fromRGBO(23, 118, 88, 1),
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: Column(
-            mainAxisAlignment:
-                MainAxisAlignment.center, // Centraliza na vertical
-            children: <Widget>[
-              // Imagem do logo com espaçamento ao redor
-              Padding(
-                padding: const EdgeInsets.all(50.0),
-                child: Image.asset(
-                  'assets/app/logo.png',
-                  width: 200, // Ajuste de tamanho da imagem para responsividade
-                  fit: BoxFit.contain,
-                ),
-              ),
-              // Linha para agrupar os botões de login e cadastro
-              Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.center, // Centraliza os botões na linha
+    return BlocConsumer<ThemeCubit, ThemeState>(
+      listener: (context, state) {
+        context.read<ThemeCubit>().state;
+      },
+      builder: (context, state) {
+        return Scaffold(
+          // Container para definir a cor de fundo da tela
+          body: Center(
+            child: Container(
+              color: state.themeData.colorScheme.surface,
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Column(
+                // Centraliza na vertical
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  // Botão para fazer login
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/pagina_inicial');
-                    },
-                    child: const Text('Fazer Login'),
+                  // Imagem do logo com espaçamento ao redor
+                  Padding(
+                    padding: const EdgeInsets.all(50.0),
+                    child: Image.asset(
+                      'assets/app/logo.png',
+                      width:
+                          200, // Ajuste de tamanho da imagem para responsividade
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                  const SizedBox(width: 20),
-                  // Botão para cadastro
-                  ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/pagina_inicial');
-                    },
-                    child: const Text('Cadastre-se'),
+                  // Linha para agrupar os botões de login e cadastro
+                  Row(
+                    // Centraliza os botões na linha
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      // Botão para fazer login
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            state.themeData.colorScheme.primary,
+                          ),
+                          foregroundColor: WidgetStatePropertyAll(
+                            state.themeData.colorScheme.onPrimary,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/pagina_inicial');
+                        },
+                        child: const Text('Fazer Login'),
+                      ),
+                      const SizedBox(width: 20.0),
+                      // Botão para cadastro
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: WidgetStatePropertyAll(
+                            state.themeData.colorScheme.primary,
+                          ),
+                          foregroundColor: WidgetStatePropertyAll(
+                            state.themeData.colorScheme.onPrimary,
+                          ),
+                        ),
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/pagina_inicial');
+                        },
+                        child: const Text('Cadastre-se'),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

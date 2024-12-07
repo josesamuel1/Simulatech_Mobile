@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../components/audio_player.dart';
+import '../cubits/theme/theme_cubit.dart';
 
 // Função principal que inicia o aplicativo e define a página inicial como AuscultaAbdominal
 void main() => runApp(const MaterialApp(home: AuscultaAbdominal()));
@@ -61,76 +63,86 @@ class _AuscultaAbdominalState extends State<AuscultaAbdominal> {
   // Construção do layout da página
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color.fromRGBO(23, 118, 88, 1),
-      appBar: AppBar(
-        foregroundColor: Colors.white,
-        backgroundColor: const Color.fromRGBO(0, 0, 0, 0),
-        title: const Text(
-          'Ausculta Abdominal',
-          style: TextStyle(fontSize: 24, color: Colors.white),
-        ),
-      ),
-      body: SafeArea(
-        minimum: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
-        child: SingleChildScrollView(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              // Tamanho padrão
-              double containerWidth = constraints.maxWidth;
-              // Verifica se a largura da tela é maior que um valor específico
-              if (constraints.maxWidth >= 600) {
-                // Tamanho para computadores (50%)
-                containerWidth = constraints.maxWidth * 0.66;
-              }
-              return Center(
-                child: Column(
-                  // Centraliza o conteúdo na tela
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/app/logo.png',
-                      height: 250,
-                      width: 250,
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: containerWidth,
-                      child: AudioContainer(
-                        // Associa o player ao componente de áudio
-                        player: player1,
-                        // Título do áudio
-                        title: 'Título Abdominal 1',
-                        // Descrição do áudio
-                        description: 'Info Abdominal 1',
-                        image: 'assets/app/logo.jpeg',
-                      ),
-                    ),
-                    SizedBox(
-                      width: containerWidth,
-                      child: AudioContainer(
-                        player: player2,
-                        title: 'Título Abdominal 2',
-                        description: 'Info Abdominal 2',
-                        image: 'assets/app/logo.jpeg',
-                      ),
-                    ),
-                    SizedBox(
-                      width: containerWidth,
-                      child: AudioContainer(
-                        player: player3,
-                        title: 'Título Abdominal 3',
-                        description: 'Info Abdominal 3',
-                        image: 'assets/app/logo.jpeg',
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
+    return BlocConsumer<ThemeCubit, ThemeState>(
+      listener: (context, state) {
+        context.read<ThemeCubit>().state;
+      },
+      builder: (context, state) {
+        return Scaffold(
+          backgroundColor: state.themeData.colorScheme.surface,
+          appBar: AppBar(
+            backgroundColor: state.themeData.colorScheme.tertiary,
+            foregroundColor: state.themeData.colorScheme.onSurface,
+            title: const Text(
+              'Ausculta Abdominal',
+              style: TextStyle(fontSize: 24),
+            ),
           ),
-        ),
-      ),
+          body: SafeArea(
+            minimum: const EdgeInsets.symmetric(
+              vertical: 16.0,
+              horizontal: 24.0,
+            ),
+            child: SingleChildScrollView(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  // Tamanho padrão
+                  double containerWidth = constraints.maxWidth;
+                  // Verifica se a largura da tela é maior que um valor específico
+                  if (constraints.maxWidth >= 600) {
+                    // Tamanho para computadores (50%)
+                    containerWidth = constraints.maxWidth * 0.66;
+                  }
+                  return Center(
+                    child: Column(
+                      // Centraliza o conteúdo na tela
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/app/logo.png',
+                          height: 250,
+                          width: 250,
+                        ),
+                        const SizedBox(height: 20.0),
+                        SizedBox(
+                          width: containerWidth,
+                          child: AudioContainer(
+                            // Associa o player ao componente de áudio
+                            player: player1,
+                            // Título do áudio
+                            title: 'Título Abdominal 1',
+                            // Descrição do áudio
+                            description: 'Info Abdominal 1',
+                            image: 'assets/app/logo.jpeg',
+                          ),
+                        ),
+                        SizedBox(
+                          width: containerWidth,
+                          child: AudioContainer(
+                            player: player2,
+                            title: 'Título Abdominal 2',
+                            description: 'Info Abdominal 2',
+                            image: 'assets/app/logo.jpeg',
+                          ),
+                        ),
+                        SizedBox(
+                          width: containerWidth,
+                          child: AudioContainer(
+                            player: player3,
+                            title: 'Título Abdominal 3',
+                            description: 'Info Abdominal 3',
+                            image: 'assets/app/logo.jpeg',
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
